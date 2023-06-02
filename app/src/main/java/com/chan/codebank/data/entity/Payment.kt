@@ -1,4 +1,4 @@
-package com.chan.codebank.data
+package com.chan.codebank.data.entity
 
 import java.util.Date
 

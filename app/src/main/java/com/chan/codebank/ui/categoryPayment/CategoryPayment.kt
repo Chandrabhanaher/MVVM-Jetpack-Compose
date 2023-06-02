@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -27,7 +28,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.chan.codebank.R
-import com.chan.codebank.data.Payment
+import com.chan.codebank.data.entity.Payment
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -39,7 +40,7 @@ import java.util.Locale
  */
 
 @Composable
-fun CategoryPayment(modifier: Modifier = Modifier) {
+fun CategoryPayment(modifier: Modifier) {
     val viewModel: CategoryPaymentViewModel = viewModel()
     val viewState by viewModel.state.collectAsState()
 
@@ -54,8 +55,7 @@ private fun Payments(list: List<Payment>) {
         items(list) { item ->
             PaymentListItems(
                 payment = item,
-                onClick = {},
-                modifier = Modifier.fillParentMaxWidth()
+                onClick = {}
             )
         }
     }
@@ -64,13 +64,13 @@ private fun Payments(list: List<Payment>) {
 @Composable
 private fun PaymentListItems(
     payment: Payment,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit
 ) {
-    ConstraintLayout(modifier = modifier
+    ConstraintLayout(modifier = Modifier
+        .fillMaxWidth()
         .clickable { onClick }) {
 
-        val (divider, paymentTitle, paymentCategory, icon, date) = createRefs()
+        val (divider, paymentTitle, paymentCategory, date, icon ) = createRefs()
         Divider(
             Modifier.constrainAs(divider) {
                 top.linkTo(parent.top)
@@ -85,11 +85,13 @@ private fun PaymentListItems(
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.constrainAs(paymentTitle) {
                 linkTo(
-                    start = parent.start, end = icon.start,
-                    startMargin = 16.dp, endMargin = 16.dp
+                    start = parent.start,
+                    end = icon.start,
+                    startMargin = 24.dp,
+                    endMargin = 16.dp
                 )
                 top.linkTo(parent.top, margin = 10.dp)
-                width = Dimension.preferredWrapContent
+                width = Dimension.fillToConstraints
             })
 
         Text(
@@ -98,8 +100,10 @@ private fun PaymentListItems(
             style = MaterialTheme.typography.titleSmall,
             modifier = Modifier.constrainAs(paymentCategory) {
                 linkTo(
-                    start = parent.start, end = icon.start,
-                    startMargin = 16.dp, endMargin = 9.dp
+                    start = parent.start,
+                    end = date.start,
+                    startMargin = 24.dp,
+                    endMargin = 8.dp
                 )
                 top.linkTo(paymentTitle.bottom, margin = 6.dp)
                 bottom.linkTo(parent.bottom, margin = 10.dp)
@@ -120,12 +124,14 @@ private fun PaymentListItems(
             style = MaterialTheme.typography.titleSmall,
             modifier = Modifier.constrainAs(date) {
                 linkTo(
-                    start = paymentCategory.end, end = icon.start,
-                    startMargin = 8.dp, endMargin = 16.dp
+                    start = paymentCategory.end,
+                    end = icon.start,
+                    startMargin = 8.dp,
                 )
                 centerVerticallyTo(paymentCategory)
                 top.linkTo(paymentTitle.bottom, margin = 6.dp)
                 bottom.linkTo(parent.bottom, margin = 10.dp)
+                width = Dimension.fillToConstraints
             })
 
 //        Image
@@ -139,8 +145,8 @@ private fun PaymentListItems(
                     end.linkTo(parent.end, 10.dp)
                 }) {
             Icon(
-                imageVector = Icons.Filled.Check,
-                contentDescription = stringResource(R.string.check)
+                imageVector = Icons.Filled.AccountCircle,
+                contentDescription = stringResource(R.string.account)
             )
         }
 

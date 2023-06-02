@@ -1,6 +1,6 @@
 package com.chan.codebank.ui.categoryPayment
 
-import com.chan.codebank.data.Payment
+import com.chan.codebank.data.entity.Payment
 
 
 /**

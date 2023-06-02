@@ -1,6 +1,6 @@
 package com.chan.codebank.ui.home
 
-import com.chan.codebank.data.Category
+import com.chan.codebank.data.entity.Category
 
 
 /**

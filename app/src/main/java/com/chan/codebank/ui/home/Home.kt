@@ -34,7 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.chan.codebank.data.Category
+import com.chan.codebank.data.entity.Category
 import com.chan.codebank.ui.categoryPayment.CategoryPayment
 
 /**
@@ -99,7 +99,7 @@ private fun HomeContent(
             )
 
             CategoryPayment(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxWidth()
             )
         }
 
