@@ -29,6 +29,7 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.chan.codebank.R
 import com.chan.codebank.data.entity.Payment
+import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -95,7 +96,7 @@ private fun PaymentListItems(
             })
 
         Text(
-            text = payment.paymentCategory,
+            text = payment.paymentCategoryId.toString(),
             maxLines = 1,
             style = MaterialTheme.typography.titleSmall,
             modifier = Modifier.constrainAs(paymentCategory) {
@@ -112,13 +113,14 @@ private fun PaymentListItems(
 
 
         Text(
-            text = when {
+           /* text = when {
                 payment.paymentDate != null -> {
                     payment.paymentDate.formatToString()
                 }
 
                 else -> Date().formatToString()
-            },
+            },*/
+            text= "",
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.titleSmall,

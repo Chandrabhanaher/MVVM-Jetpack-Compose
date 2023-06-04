@@ -32,7 +32,7 @@ class HomeViewModel(
     }
 
     init {
-        /* val categories = MutableStateFlow<List<Category>>(
+         val categories = MutableStateFlow<List<Category>>(
              mutableListOf(
                  Category(1, "Food"),
                  Category(2, "Health"),
@@ -45,7 +45,7 @@ class HomeViewModel(
                  Category(9, "Repairs"),
                  Category(10, "Coffee")
              )
-         )*/
+         )
         viewModelScope.launch {
 
             combine(
